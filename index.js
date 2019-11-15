@@ -20,7 +20,7 @@ bot.on('message', msg => {
 					game: {
 						type: 'STREAMING',
 						name: args.join(' '),
-						url: 'https://www.twitch.tv/elijahhhx'
+						url: 'https://www.twitch.tv/margielasweater'
 					}
 				}).catch(console.error)
 				break
