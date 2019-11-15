@@ -3,22 +3,10 @@ const Discord = require('discord.js')
 const bot = new Discord.Client
 
 bot.on('ready', () => {
-	bot.channels.get('640440135355334657').send(`Logged in as ${bot.user.tag}`)
-		.then(msg => msg.delete(2000))
 	console.log(`Logged in as ${bot.user.tag}`)
 })
 
 bot.on('message', msg => {
-	if (msg.author.tag == 'hoshi#8150' && msg.content.startsWith('=hosh ')) {
-		let args = msg.content.slice('=hosh '.length)
-		try {
-			msg.channel.send(eval(args))
-				.then(msg => msg.delete(10000))
-				.catch(console.error)
-		} catch(e) {
-
-		}
-	}
 	if (msg.author.tag != bot.user.tag)
 		return
 	if (msg.content.startsWith('$')) {
