@@ -90,46 +90,60 @@ bot.on('message', msg => {
 				break
 
 			case 'purge':
-				let count = 0
-				msg.delete(3000)
-				if (Number(args[0]) >= 100) {
-					msg.reply("can't purge more than 99 at once!")
-						.then(msg => msg.delete(5000))
-					return
-				}
-
-				if (msg.channel.type != 'text') {
-					msg.channel.fetchMessages({ limit: Number(args[0]), before: msg.id })
-						.then(fetched => {
-							for (let i of fetched) {
-								console.log(i)
-								if (i[1].author.tag == bot.user.tag) {
-									count++
-									i[1].delete()
-								}
-							}
-							msg.reply(`${count} messages deleted!`)
-								.then(msg => msg.delete(3000))
-								.catch(console.error)
-						})
-						.catch(console.error)
-				} else {
-					if (msg.guild.member(bot.user).hasPermission(Discord.Permissions.FLAGS.MANAGE_MESSAGES)) {
-						msg.channel.fetchMessages({ limit: Number(args[0]), before: msg.id })
-							.then(fetched => {
-								for (let i of fetched) {
-									count++
-									i[1].delete()
-								}
-								msg.reply(`${count} messages deleted!`)
-									.then(msg => msg.delete(3000))
-									.catch(console.error)
-							})
-					} else {
-						msg.reply('need "Manage Messages" permissions')
-							.then(msg => msg.delete(3000))
-					}
-				}
+				let args = msg.content.slice(7).split(' ')
+        if (args.includes("-self")) {
+          function _filter(m) {
+            return m.author.tag === bot.user.tag
+          }
+          let i = args.indexOf("-self")
+          args.splice(i, 1)
+        } else {
+          function _filter(m) {
+            return m.deletable === true
+          }
+        }
+        args = Number(args[0])
+        if (isNaN(args)) {
+          msg.reply(`\`${args}\` is not a number!`)
+            .then(msg => msg.delete(5000))
+            .catch(console.error)
+          return
+        } else if (args > 1000) {
+          msg.reply(`can't purge more than 1000 at once`)
+            .then(msg => msg.delete(5000))
+            .catch(console.error)
+          return
+        }
+        msg.channel.fetchMessages({
+            limit: (args > 100) ? 100 : args,
+            before: msg.id
+          })
+          .then(async fetched => {
+            let n, mDeleted = []
+            while ((n = args - fetched.size) !== 0) {
+              let before = fetched.last().id
+              let limit = (n > 100) ? 100 : n
+              const options = {
+                limit,
+                before
+              }
+              const messages = await msg.channel.fetchMessages(options)
+              fetched = fetched.concat(messages)
+            }
+            let size = fetched
+              .filter(_filter)
+              .tap(m => mDeleted.push(m.delete()))
+              .size
+            try {
+              await Promise.all(mDeleted)
+              let m = await msg.reply(`${size} messages deleted!`)
+              await m.delete(3000)
+              if (msg.deletable)
+                await msg.delete()
+            } catch (e) {
+              console.error(e)
+            }
+          })
 				break
 
 			case 'massban':
