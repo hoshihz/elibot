@@ -15,6 +15,8 @@ module.exports = {
         users.tap(user => {
           let embed = new Discord.RichEmbed()
             .setAuthor(user.tag, user.avatarURL, user.avatarURL)
+            .setFooter(client.user.tag, client.user.avatarURL)
+            .setTimestamp(msg.createdAt)
             .setImage(user.avatarURL)
             .setColor(0xbd84)
           msg.channel.send(embed).catch(console.error)
