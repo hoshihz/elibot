@@ -1,0 +1,7 @@
+{
+  "TOKEN": "INSERT_TOKEN_HERE",
+  "PREFIX": "$",
+  "LIMIT": 1000,
+  "REACTIONS": ["😀", "😏"],
+  "TWITCH_URL": "https://www.twitch.tv/margielasweater"
+}
