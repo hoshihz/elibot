@@ -39,7 +39,6 @@ module.exports = {
         limit: (amount > 100) ? 100 : amount,
         before: msg.id
       })
-      console.log(fetched.size)
       var n, m = fetched.size, mDeleted = []
       while ((n = amount - fetched.size) !== 0) {
         const options = {
