@@ -1,8 +1,8 @@
 //status
-const {
-  TWITCH_URL,
-  PREFIX
-} = require('../config.json')
+const dconfig = require('../config_default.json')
+const config = require('../config.json')
+var PREFIX = config.PREFIX || dconfig.PREFIX
+var TWITCH_URL = config.TWITCH_URL || dconfig.TWITCH_URL
 
 module.exports = {
   verify(cmd) {

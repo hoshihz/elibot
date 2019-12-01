@@ -1,8 +1,8 @@
 //react
-const {
-  REACTIONS,
-  LIMIT
-} = require('../config.json')
+const dconfig = require('../config_default.json')
+const config = require('../config.json')
+var LIMIT = config.LIMIT || dconfig.LIMIT
+var REACTIONS = config.REACTIONS || dconfig.REACTIONS
 
 module.exports = {
   verify(cmd) {
