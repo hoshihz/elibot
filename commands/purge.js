@@ -39,7 +39,8 @@ module.exports = {
         limit: (amount > 100) ? 100 : amount,
         before: msg.id
       })
-      var n, mDeleted = []
+      console.log(fetched.size)
+      var n, m = fetched.size, mDeleted = []
       while ((n = amount - fetched.size) !== 0) {
         const options = {
           limit: (n > 100) ? 100 : n,
@@ -47,6 +48,7 @@ module.exports = {
         }
         const messages = await msg.channel.fetchMessages(options)
         fetched = fetched.concat(messages)
+        if (m === fetched.size) break
       }
       var reply = await msg.reply('purging...')
       const size = fetched
