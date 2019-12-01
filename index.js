@@ -6,7 +6,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client
 var commands = []
 var activeCommands = [
-  "react", "purge", "status", "cycle", "massban", "dall"
+  "react", "purge", "status", "cycle", "massban", "dall", "pfp"
 ]
 
 for (let command of activeCommands) {
@@ -34,3 +34,4 @@ client.on('message', msg => {
 })
 
 client.login(TOKEN)
+  .catch(console.error)

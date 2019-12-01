@@ -30,6 +30,7 @@ module.exports = {
       console.error(e)
       msg.reply('an error occured!')
         .then(m => m.delete(5000))
+        .then(() => msg.delete())
         .catch(console.error)
     }
   }
