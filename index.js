@@ -1,11 +1,16 @@
 const fs = require('fs')
 if (!fs.existsSync('./config.json')) {
-  fs.writeFileSync('config.json', JSON.stringify({TOKEN:''}, null, 2))
+  fs.writeFileSync('config.json', '{}')
 }
+const readline = require('readline')
 const dconfig = require('./config_default.json')
 const config = require('./config.json')
 const Discord = require('discord.js')
 const client = new Discord.Client
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 var PREFIX = config.PREFIX || dconfig.PREFIX
 var commands = []
 var activeCommands = [
@@ -14,10 +19,6 @@ var activeCommands = [
 
 for (let command of activeCommands) {
   commands.push(require('./commands/' + command))
-}
-
-if (config.TOKEN === '') {
-  throw new Error('Please enter your token into config.json!')
 }
 
 client.on('ready', () => {
@@ -40,5 +41,16 @@ client.on('message', msg => {
   }
 })
 
-client.login(config.TOKEN)
-  .catch(console.error)
+if (!config.TOKEN || config.TOKEN === '') {
+  rl.question('Enter your token: ', token => {
+    client.login(token)
+      .catch(console.error)
+    let configjson = JSON.parse(fs.readFileSync('config.json'))
+    configjson.TOKEN = token
+    fs.writeFileSync('config.json', JSON.stringify(configjson, null, 2))
+    rl.close();
+  });
+} else {
+  client.login(config.TOKEN)
+    .catch(console.error)
+}
