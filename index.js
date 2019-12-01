@@ -1,9 +1,12 @@
-const {
-  TOKEN,
-  PREFIX
-} = require('./config.json')
+const fs = require('fs')
+if (!fs.existsSync('./config.json')) {
+  fs.writeFileSync('config.json', JSON.stringify({TOKEN:''}, null, 2))
+}
+const dconfig = require('./config_default.json')
+const config = require('./config.json')
 const Discord = require('discord.js')
 const client = new Discord.Client
+var PREFIX = config.PREFIX || dconfig.PREFIX
 var commands = []
 var activeCommands = [
   "react", "purge", "status", "cycle", "massban", "dall", "pfp"
@@ -11,6 +14,10 @@ var activeCommands = [
 
 for (let command of activeCommands) {
   commands.push(require('./commands/' + command))
+}
+
+if (config.TOKEN === '') {
+  throw new Error('Please enter your token into config.json!')
 }
 
 client.on('ready', () => {
@@ -33,5 +40,5 @@ client.on('message', msg => {
   }
 })
 
-client.login(TOKEN)
+client.login(config.TOKEN)
   .catch(console.error)
