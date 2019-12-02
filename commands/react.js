@@ -8,8 +8,16 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/(react)/i, '').length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}react <amount>`
+    var desc = 'Adds a set of reaction(s) up to a set limit of messages in a channel.'
+    var other = `*\\*Default limit is 1000, limit are configurable*\n` +
+    `*\\*Default reactions are 😀 😏, reactions are configurable*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {

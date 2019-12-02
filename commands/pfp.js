@@ -5,8 +5,15 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/(pfp)/i, '').length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}pfp @mention`
+    var desc = 'Sends an embeded image of the mentioned user(s) profile picture.'
+    var other = `*\\*Only works with mention*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {

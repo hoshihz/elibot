@@ -9,8 +9,17 @@ module.exports = {
     return cmd.replace(/(streaming)|(stream)|(listening)|(listen)|(watching)|(watch)|(playing)|(play)/i, '')
       .length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}streaming <status>\n${prefix}listening <status>\n` +
+    `${prefix}watching <status>\n${prefix}playing <status>`
+    var desc = 'Sets a status to your profile.'
+    var other = `*\\*To remove your status, leave the <status> argument empty*\n` +
+    `*\\*Status changes may not be immediate*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {

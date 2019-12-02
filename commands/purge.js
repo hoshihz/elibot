@@ -7,8 +7,16 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/(purge)/i, '').length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}purge <amount> [-self]`
+    var desc = 'Deletes up to a set limit of messages in a channel.'
+    var other = `*\\*Default limit is 1000, limit are configurable*\n` +
+    `*\\*Add the optional tag "-self" to only purge your own messages*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {

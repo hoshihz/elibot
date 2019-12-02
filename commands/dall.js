@@ -4,8 +4,15 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/(dall)/i, '').length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}dall`
+    var desc = 'Deletes all deletable channels and roles in a server.'
+    var other = `*\\*Can only be used in a server*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {

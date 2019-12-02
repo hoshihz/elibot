@@ -12,13 +12,13 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 var PREFIX = config.PREFIX || dconfig.PREFIX
-var commands = []
+var commands = {}
 var activeCommands = [
-  "react", "purge", "status", "cycle", "massban", "dall", "pfp"
+  "react", "purge", "status", "cycle", "massban", "dall", "pfp", "help"
 ]
-
 for (let command of activeCommands) {
-  commands.push(require('./commands/' + command))
+  module.exports = commands
+  commands[command] = (require('./commands/' + command))
 }
 
 client.on('ready', () => {
@@ -32,9 +32,9 @@ client.on('message', msg => {
     let args = msg.content.slice(PREFIX.length).split(' ')
     let cmd = args.shift()
 
-    for (let command of commands) {
-      if (command.verify(cmd)) {
-        command.run(client, msg, args)
+    for (let command in commands) {
+      if (commands[command].verify(cmd)) {
+        commands[command].run(client, msg, args)
         break
       }
     }

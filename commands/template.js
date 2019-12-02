@@ -4,7 +4,7 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/()/i, '').length === 0
   },
-  help() {
+  help(full = false) {
   
   },
   async run(client, msg, args) {

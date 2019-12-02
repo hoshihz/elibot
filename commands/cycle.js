@@ -4,8 +4,15 @@ module.exports = {
   verify(cmd) {
     return cmd.replace(/(cycle)/i, '').length === 0
   },
-  help() {
+  help(prefix, full) {
+    var usage = `${prefix}cycle`
+    var desc = 'Cycles through your statuses.'
+    var other = `*\\*Requires a pre-set status*`
+    if (full) {
 
+    } else {
+      return [usage, desc]
+    }
   },
   async run(client, msg, args) {
     try {
