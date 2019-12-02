@@ -1,6 +1,7 @@
 const fs = require('fs')
-if (!fs.existsSync('./config.json')) {
-  fs.writeFileSync('config.json', '{}')
+if (!fs.existsSync(__dirname+'/config.json')) {
+  console.log('h')
+  fs.writeFileSync(__dirname+'/config.json', '{}')
 }
 const readline = require('readline')
 const dconfig = require('./config_default.json')
@@ -45,9 +46,9 @@ if (!config.TOKEN || config.TOKEN === '') {
   rl.question('Enter your token: ', token => {
     client.login(token)
       .catch(console.error)
-    let configjson = JSON.parse(fs.readFileSync('config.json'))
+    let configjson = JSON.parse(fs.readFileSync(__dirname+'/config.json'))
     configjson.TOKEN = token
-    fs.writeFileSync('config.json', JSON.stringify(configjson, null, 2))
+    fs.writeFileSync(__dirname+'/config.json', JSON.stringify(configjson, null, 2))
     rl.close();
   });
 } else {

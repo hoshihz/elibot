@@ -29,12 +29,12 @@ module.exports = {
       }
       var cmd
       for (cmd in cmds) {
-        if (cmds[cmd].verify(args[0])) {
+        if (cmd !== 'help' && cmds[cmd].verify(args[0])) {
           args.shift()
+          cmds[cmd].help(PREFIX, true, args)
           break
         }
       }
-
     } catch (e) {
       console.error(e)
       msg.reply('an error occured!')
