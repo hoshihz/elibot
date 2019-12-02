@@ -31,4 +31,4 @@ If the bot has been updated on this repository, there are two ways to update the
 ### Through GitHub Desktop
 1. Open the GitHub Desktop app.
 2. Click the **Fetch Origin** button on the top bar of the application.
-3. Click 
+3. Click the **Pull Origin** button.
