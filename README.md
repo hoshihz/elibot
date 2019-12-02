@@ -21,7 +21,7 @@ There are two ways you can download the bot, either way works.
 1. Open your command prompt or terminal
 2. Type `node `, then drag the file named `index.js` into the command prompt/terminal window. Press enter.
 3. On your initial startup, the command prompt/terminal window will ask for you token. Enter your token then press enter.
-   * If you have entered an incorrect token or want to change your token, edit the `config.json` file.
+   * If you have entered an incorrect token or want to change your token, open the `config.json` file and edit your token directly, or delete the token line.
 4. To logout, simply use the following keybind: Ctrl+C
 # Updates
 If the bot has been updated on this repository, there are two ways to update the bot:
