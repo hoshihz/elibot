@@ -1,6 +1,5 @@
 const fs = require('fs')
 if (!fs.existsSync(__dirname+'/config.json')) {
-  console.log('h')
   fs.writeFileSync(__dirname+'/config.json', '{}')
 }
 const readline = require('readline')
