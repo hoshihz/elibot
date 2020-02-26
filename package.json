@@ -1,0 +1,22 @@
+{
+  "name": "elibot",
+  "version": "1.0.0",
+  "description": "1. Download and install [node.js](https://nodejs.org)\r 2. Create a folder for your bot.\r 3. Open your command prompt or terminal\r    1. Type `cd `, then drag your created folder into the command prompt/terminal window. Press enter.\r    2. Type `npm install discord.js` then press enter.\r # Download\r There are two ways you can download the bot, either way works.\r ### Traditionally\r 1. Download the ZIP file directly from https://github.com/hoshihz/elibot/\r 2. Extract the ZIP file to the folder created above.\r ### Through GitHub Desktop\r 1. Download the [GitHub Desktop](https://desktop.github.com/) app.\r 2. Open the GitHub Desktop app, click **File** -> **Clone Repository...**\r 3. Choose the **URL** tab then paste `hoshihz/elibot` into the URL field.\r 4. At the **Local Path** field, enter the path to the folder created above.\r 5. Erase the extra `/elibot` at the end of the **Local Path** as shown below:\r ![prompt_image](https://user-images.githubusercontent.com/47910206/69922866-bb46a900-1454-11ea-9a5f-71e28916be91.png)\r 6. Press **Clone**\r # Starting your bot\r 1. Open your command prompt or terminal\r 2. Type `node `, then drag the file named `index.js` into the command prompt/terminal window. Press enter.\r 3. On your initial startup, the command prompt/terminal window will ask for you token. Enter your token then press enter.\r    * If you have entered an incorrect token or want to change your token, open the `config.json` file and edit your token directly, or delete the token line.\r 4. To logout, simply use the following keybind: Ctrl+C\r # Updates\r If the bot has been updated on this repository, there are two ways to update the bot:\r ### Traditionally\r 1. Download the ZIP file directly from https://github.com/hoshihz/elibot/\r 2. Extract the ZIP file to the folder created above and replace all.\r ### Through GitHub Desktop\r 1. Open the GitHub Desktop app.\r 2. Click the **Fetch Origin** button on the top bar of the application.\r 3. Click the **Pull Origin** button.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoshihz/elibot.git"
+  },
+  "author": "hoshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoshihz/elibot/issues"
+  },
+  "homepage": "https://github.com/hoshihz/elibot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
